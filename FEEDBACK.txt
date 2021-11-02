@@ -1,0 +1,183 @@
+FEEDBACK:
+
+You're on the right track, however your implementation does not correctly
+        find the minimum and maximum in the lazy search tree for various 
+        test cases. 
+        Did you check the discussion forum to check your assumptions on
+        what the minimum of the soft tree is?
+        
+        I see that you added your own test cases. However, did you verify
+        that the output you see matches the result you expect? 
+        
+        Always *verify* your results. Don't assume just because you have 
+    an output on the screen that it is correct.
+    
+    Test cases are very important for several reasons:
+    - they identify how the client will use your implementation.
+    - and they form the foundation on which to design and develop.
+    
+
+
+-2 Incomplete implementation of findMin() should first traverse the left
+   subtree for the minimum node then traverse the right subtree.
+   See sample outputs below.
+   
+   Suggestion: When searching for the minimum make sure to search
+   both left and right subtrees:
+
+   // base case
+   if (root is null)
+      return null;
+
+   // base case
+   if (root.deleted == true)
+       return null;
+
+   otherwise:
+   findMin on left subtree and store result;
+   if result is not null, then return result;
+   
+   if result is null, then search right subtree by calling findMin;
+   check if current root we're at is deleted, if not then return current root; <--- you are missing this key portion
+   
+   finally return result to caller.  
+   
+
+-2 Incomplete implementation of findMax() should first traverse the right
+   subtree for the minimum node then traverse the left subtree.
+
+   
+-Bita.
+
+
+
+sample output 1:
+...
+
+Update at line #1: add mango
+"hard" number of unique items (i.e. mSizeHard) = 1
+"soft" number of unique items (i.e. mSize) = 1
+
+Testing traversing "hard" inventory:
+mango:1  
+
+Testing traversing "soft" inventory:
+mango:1  
+
+
+at line #1: add mango
+First item: mango:1 
+Last item: mango:1 
+
+
+Update at line #2: add milk
+"hard" number of unique items (i.e. mSizeHard) = 2
+"soft" number of unique items (i.e. mSize) = 2
+
+Testing traversing "hard" inventory:
+mango:1  milk:1  
+
+Testing traversing "soft" inventory:
+mango:1  milk:1  
+
+
+at line #2: add milk
+First item: mango:1 
+Last item: mango:1 
+
+
+Update at line #3: add tomatoes
+"hard" number of unique items (i.e. mSizeHard) = 3
+"soft" number of unique items (i.e. mSize) = 3
+
+Testing traversing "hard" inventory:
+mango:1  milk:1  tomatoes:1  
+
+Testing traversing "soft" inventory:
+mango:1  milk:1  tomatoes:1  
+
+
+at line #3: add tomatoes
+First item: mango:1 
+Last item: mango:1 
+
+
+Update at line #4: buy mango
+"hard" number of unique items (i.e. mSizeHard) = 3
+"soft" number of unique items (i.e. mSize) = 2
+
+Testing traversing "hard" inventory:
+mango:0  milk:1  tomatoes:1  
+
+Testing traversing "soft" inventory:
+milk:1  tomatoes:1  
+
+
+at line #4: buy mango
+First item: mango:0 
+Last item: milk:1 
+
+
+
+sample output 2:
+...
+
+
+at line #11: buy bread
+First item: mango:1 
+Last item: mango:1 
+
+
+Update at line #12: buy chicken
+"hard" number of unique items (i.e. mSizeHard) = 8
+"soft" number of unique items (i.e. mSize) = 4
+
+Testing traversing "hard" inventory:
+bread:0  chicken:0  lemon:1  mango:1  milk:0  soup:0  tomatoes:1  watermelon:1  
+
+Testing traversing "soft" inventory:
+lemon:1  mango:1  tomatoes:1  watermelon:1  
+
+
+at line #12: buy chicken
+First item: mango:1 
+Last item: mango:1 
+
+Warning: Unable to fulfill request: at line #13: buy zucchini 
+Warning: Item zucchini is out of stock.
+
+at line #13: buy zucchini
+First item: mango:1 
+Last item: mango:1 
+
+
+Update at line #14: add zucchini
+"hard" number of unique items (i.e. mSizeHard) = 9
+"soft" number of unique items (i.e. mSize) = 5
+
+Testing traversing "hard" inventory:
+bread:0  chicken:0  lemon:1  mango:1  milk:0  soup:0  tomatoes:1  watermelon:1  zucchini:1  
+
+Testing traversing "soft" inventory:
+lemon:1  mango:1  tomatoes:1  watermelon:1  zucchini:1  
+
+
+at line #14: add zucchini
+First item: mango:1 
+Last item: mango:1 
+
+
+Update at line #15: add tomatoes
+"hard" number of unique items (i.e. mSizeHard) = 9
+"soft" number of unique items (i.e. mSize) = 5
+
+Testing traversing "hard" inventory:
+bread:0  chicken:0  lemon:1  mango:1  milk:0  soup:0  tomatoes:2  watermelon:1  zucchini:1  
+
+Testing traversing "soft" inventory:
+lemon:1  mango:1  tomatoes:2  watermelon:1  zucchini:1  
+
+
+at line #15: add tomatoes
+First item: mango:1 
+Last item: mango:1 

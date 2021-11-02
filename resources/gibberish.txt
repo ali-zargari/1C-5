@@ -1,0 +1,21 @@
+add soup
+add tangerines
+add turnips
+add milk
+add apples
+add apples
+add apples
+add bread
+buy soup
+buy milk
+buy bread
+buy apples
+... 0
+___ 8
+add add add
+buy add add
+buy add buy
+add buy
+buy add
+buy, 1234567
+buy soup
